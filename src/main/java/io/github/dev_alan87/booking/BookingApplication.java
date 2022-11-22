@@ -3,11 +3,15 @@ package io.github.dev_alan87.booking;
 import java.util.Arrays;
 
 import javax.faces.webapp.FacesServlet;
+import javax.servlet.DispatcherType;
+import javax.servlet.Filter;
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 
+import org.ocpsoft.rewrite.servlet.RewriteFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
@@ -29,6 +33,17 @@ public class BookingApplication {
 		srb.setLoadOnStartup(1);
 		
 		return srb;
+	}
+	
+	@Bean
+	FilterRegistrationBean<Filter> rewriteFilter() {
+		FilterRegistrationBean<Filter> rwFilter = new FilterRegistrationBean<>(new RewriteFilter());
+		rwFilter.setDispatcherTypes(DispatcherType.FORWARD, 
+										DispatcherType.REQUEST, 
+										DispatcherType.ASYNC, 
+										DispatcherType.ERROR);
+		rwFilter.addUrlPatterns("/*");
+		return rwFilter;
 	}
 	
 }
