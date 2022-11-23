@@ -29,28 +29,17 @@ public class UserController {
 
 	public UserController(UserRepository repository) {
 		this.repository = repository;
-
-		this.user = new PersonalUser();
-
-		this.list = new ArrayList<>();
-
-		loadList();
+		user = new PersonalUser();
+		list = new ArrayList<>();
 	}
 
-	public void save() {
-		list.add(user);
-	}
-
-	private void loadList() {
-		User aux;
-		for (int i = 0; i < 10; i++) {
-			aux = new PersonalUser();
-			aux.setName(String.format("User %02d", i));
-			aux.setEmail(String.format("user%02d@user.com", i));
-			aux.setPhone(String.format("+55 11 99999-99%02d", i));
-
-			this.list.add(aux);
+	public String save() { 
+		if(!list.contains(user)) {
+			list.add(user);
+			user = new PersonalUser();
 		}
+			
+		return "/user-form.xhtml?faces-redirect=true";
 	}
 
 }

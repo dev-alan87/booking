@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "tb_user_corporate")
 @PrimaryKeyJoinColumn(name = "id")
-@Data @EqualsAndHashCode(callSuper = false)
+@Data @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor @NoArgsConstructor
 public class CorporateUser extends User {
 

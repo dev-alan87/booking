@@ -46,4 +46,20 @@ public abstract class User {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
 	
+	@Override
+	public boolean equals(Object object) {
+		try {
+			if(object!=null) {
+				User u = (User)object;
+				return this.email.equals(u.email);
+			}
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 }

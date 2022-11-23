@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 @Entity @Table(name = "tb_user_personal")
 @PrimaryKeyJoinColumn(name = "id")
-@Data @EqualsAndHashCode(callSuper = false)
+@Data @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor @NoArgsConstructor
 public class PersonalUser extends User {
 	
