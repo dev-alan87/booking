@@ -46,7 +46,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -87,7 +87,15 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>sonatype-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
+
 	<build>
+		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

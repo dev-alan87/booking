@@ -5,13 +5,43 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head>
+	<title>User Form</title>
+</h:head>
+
+<h:body>
 	<h:form id="userForm">
 		<p:panel header="User Details">
-			<h:panelGrid columns="1">
+			<h:panelGrid columns="2">
 				<p:outputLabel for="name" value="Name: " />
-				<p:inputText id="name" value="#{userController.user.name}" />
+				<p:inputText id="name" value="#{userController.user.name}"></p:inputText>
+
+				<p:outputLabel for="email" value="E-mail: "></p:outputLabel>
+				<p:inputText id="email" value="#{userController.user.email}"></p:inputText>
+
+				<p:outputLabel for="phone" value="Phone: "></p:outputLabel>
+				<p:inputText id="phone" value="#{userController.user.phone}"></p:inputText>
+
+				<p:commandButton value="Save" action="#{userController.save}"></p:commandButton>
 			</h:panelGrid>
 		</p:panel>
 	</h:form>
+	<h:form>
+		<p:panel header="User List">
+			<p:dataTable value="#{userController.list}" var="u">
+				<p:column headerText="Name">
+					<h:outputText value="#{u.name}" />
+				</p:column>
+				<p:column headerText="E-mail">
+					<h:outputText value="#{u.email}" />
+				</p:column>
+				<p:column headerText="Phone">
+					<h:outputText value="#{u.phone}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+</h:body>
+
 
 </html>
