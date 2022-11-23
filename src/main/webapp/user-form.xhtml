@@ -38,6 +38,15 @@
 				<p:column headerText="Phone">
 					<h:outputText value="#{u.phone}" />
 				</p:column>
+				<p:column headerText="Options">
+					<p:commandLink value="Update" action="#{userController.update}">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{userController.user}" />
+					</p:commandLink> | 
+					<p:commandLink value="Delete" action="#{userController.delete}">
+						<f:setPropertyActionListener value="#{u}" target="#{userController.user}" />
+					</p:commandLink>
+				</p:column>
 			</p:dataTable>
 		</p:panel>
 	</h:form>

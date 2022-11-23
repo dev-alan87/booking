@@ -12,13 +12,11 @@ import org.springframework.stereotype.Component;
 import io.github.dev_alan87.booking.domain.entities.PersonalUser;
 import io.github.dev_alan87.booking.domain.entities.User;
 import io.github.dev_alan87.booking.domain.repositories.UserRepository;
-import lombok.Data;
 
 @Scope(value = "session")
 @Component("userController")
 @ELBeanName("userController")
 @Join(path = "/users", to = "user-form.xhtml")
-@Data
 public class UserController {
 
 	@Autowired
@@ -26,6 +24,7 @@ public class UserController {
 
 	private User user;
 	private List<User> list;
+	private String redirect = "/user-form.xhtml?faces-redirect=true";
 
 	public UserController(UserRepository repository) {
 		this.repository = repository;
@@ -39,7 +38,31 @@ public class UserController {
 			user = new PersonalUser();
 		}
 			
-		return "/user-form.xhtml?faces-redirect=true";
+		return redirect;
+	}
+	public String update() {
+		return redirect;
+	}
+	public String delete() {
+		if(list.contains(user)) {
+			list.remove(user);
+			user = new PersonalUser();
+		}
+		return redirect;
+	}
+
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<User> getList() {
+		return list;
+	}
+	public void setList(List<User> list) {
+		this.list = list;
 	}
 
 }
